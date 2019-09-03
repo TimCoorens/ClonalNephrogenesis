@@ -4,6 +4,10 @@
 # Tim Coorens - April 2018
 #-------------------------------------------------
 
+#-------------------------------------------------
+# Functions
+#-------------------------------------------------
+
 ## Define the truncated binomial distribution
 dbinomtrunc = function(x, size, prob, minx=4) {
   dbinom(x, size, prob) / pbinom(minx-0.1, size, prob, lower.tail=F)
@@ -116,6 +120,7 @@ binom_mix = function(x,size,nrange=1:5,criterion="BIC",maxit=5000,tol=1e-6, mode
     return(results[[which.min(AIC_vec)]])
   }
 }
+#-------------------------------------------------
 
 
 # Some dummy data
