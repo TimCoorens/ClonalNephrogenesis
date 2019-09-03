@@ -16,7 +16,7 @@ exact.binomial=function(gender,NV,NR,cutoff=-5){
   # Function to filter out germline variants based on unmatched
   # variant calls of multiple samples from same individual (aggregate coverage
   # ideally >150 or so, but will work with less). NV is matrix of reads supporting 
-  # variant and NR the matrix with total depth (samples as columns, mutations rows, 
+  # variants and NR the matrix with total depth (samples as columns, mutations rows, 
   # with rownames as chr_pos_ref_alt or equivalent). Returns a logical vector, 
   # TRUE if mutation is likely to be germline.
   
