@@ -40,3 +40,12 @@ The optimal number, proportion, and locations of the mixtures were determined us
 VAF peaks for the LCM WGS samples were computed via a binomial mixture model as well, but in this case the binomial distributions used for fitting were truncated. This reflects that no variant will be called with fewer than four supporting reads and renormalises the binomial distribution accordingly. 
 
 The code for this can be found in binom_mix_model.R
+
+## Code for plotting figures
+
+The code to plot the figures in the paper can be found in plot_figures.R This script requires you to download the supplementary material from the paper itself, as well as the LCM SNV calls and binomial mixtures in the .zip file under Data/LCM.
+
+## Workflow
+
+An example of the workflow employed in this paper can be found in Wilms_tumour_workflow.R. Here, we took PD40729 as an example. The data files necessary are located in Data/Wilms_tumour_workflow
+
