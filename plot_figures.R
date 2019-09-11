@@ -189,26 +189,23 @@ text(y=-0.3,x=seq(0,1,0.25),labels=seq(0,1,0.25),pos=1,cex=0.8)
 #----------------------
 #Figure 2E
 #----------------------
-#Example
-tubules=c("PD36720b_CA_9__F1","PD28690hk_CA_9_A3","PD28690hk_CA_9_B3","PD36723c_CA_9_B4","PD36723b_CA_9_C4")
-tubules=c(tubules,read.table("Normal_Kidney_LCM/samples.txt")[,1])
-
 library(viridis)
+add="" #Point to the directory where the LCM data files are located (from LCM_SNV_Binom_Mix.zip)
+samples=read.table(paste0("samples.txt"))[,1]
 cols=viridis(51)
 names(cols)=seq(0,0.5,0.01)
 
-y_start=length(tubules)-1
-plot(1,xlim=c(-0.75,1.5),ylim=c(-1,length(tubules)+1),
+y_start=length(samples)-1
+plot(1,xlim=c(-0.75,1.5),ylim=c(-1,length(samples)+1),
      type = "n",xlab="", ylab="",yaxt="n",xaxt='n',bty="n")
 
 rect(ybottom=0,xleft=0,xright=1,ytop=y_start+1,lwd=1.5)
-segments(x0=seq(0,1,0.25),y0=0,y1=length(tubules),col='grey80')
+segments(x0=seq(0,1,0.25),y0=0,y1=length(samples),col='grey80')
+segments(x0=0,x1=1,y0=1:(length(samples)-1),lwd=1.5)
 
-segments(x0=0,x1=1,y0=1:(length(tubules)-1),lwd=1.5)
-
-for(sample in tubules){
-  muts=read.table("LCM_example_muts.txt",header=T)
-  res=readRDS("LCM_example_binom_mix.Rdata") #result from truncated binomial mixture model
+for(sample in samples){
+  muts=read.table(paste0(add,sample,"_muts.txt"),header=T)
+  res=readRDS(paste0(add,sample,"_binom_mix.Rdata")) #result from truncated binomial mixture model
   dens=density(muts$VAF[muts$Chr%in%c(1:22)])
   lines(x=dens$x,y=y_start+0.8*dens$y/max(dens$y),xlim=c(0,1),xlab="VAF",lwd=2)
   colname=as.character(round(max(res$p),digits=2))
@@ -220,18 +217,18 @@ for(sample in tubules){
 segments(x0=c(0,0.5,1),y1=0,y0=-0.2)
 segments(x0=c(0,0.25,0.75),y1=0,y0=-0.15)
 text(y=-0.3,x=seq(0,1,0.25),labels=seq(0,1,0.25),pos=1,cex=0.8)
-text(y=(length(tubules)-0.5):0.5,x=-0.02,labels=tubules,pos=2,cex=0.8)
+text(y=(length(samples)-0.5):0.5,x=-0.02,labels=samples,pos=2,cex=0.8)
 # 
-horiz_start=seq(8,length(tubules)-8,length.out = 52)
+horiz_start=seq(8,length(samples)-8,length.out = 52)
 for (n in 1:51){
   rect(xleft=1.175,xright=1.325,ybottom=horiz_start[n],ytop=horiz_start[n+1],col=adjustcolor(cols[n],alpha.f = 0.65),border=F)
 }
-rect(xleft=1.175,xright=1.325,ytop=length(tubules)-8,ybottom=8)
+rect(xleft=1.175,xright=1.325,ytop=length(samples)-8,ybottom=8)
 
-text(labels="Fitted peak of\nautosomal variant\nallele frequency",x=1.25,y=length(tubules)-7.25,cex=0.8)
+text(labels="Fitted peak of\nautosomal variant\nallele frequency",x=1.25,y=length(samples)-7.25,cex=0.8)
 text(labels="0",x=1.4,y=8,cex=0.8)
-text(labels="0.25",x=1.4,y=length(tubules)/2,cex=0.8)
-text(labels="0.5",x=1.4,y=length(tubules)-8,cex=0.8)
+text(labels="0.25",x=1.4,y=length(samples)/2,cex=0.8)
+text(labels="0.5",x=1.4,y=length(samples)-8,cex=0.8)
 text(labels="Variant Allele Frequency",x=0.5,y=-0.75,cex=0.8,pos=1)
 
 #----------------------
