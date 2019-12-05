@@ -1,4 +1,4 @@
-# Code accompanying the paper 'Embryonal precursors of childhood kidney cancer' (Coorens et al., 2019)
+# Code accompanying the paper 'Embryonal precursors of Wilms tumor' (Coorens et al., 2019)
 
 ## General prep of SNV calls
 
@@ -44,8 +44,4 @@ The code for this can be found in binom_mix_model.R
 ## Code for plotting figures
 
 The code to plot the figures in the paper can be found in plot_figures.R This script requires you to download the supplementary material from the paper itself, as well as the LCM SNV calls and binomial mixtures in the .zip file under Data/LCM.
-
-## Workflow
-
-An example of the workflow employed in this paper can be found in Wilms_tumour_workflow.R. Here, we took PD40729 as an example. The data files necessary are located in Data/Wilms_tumour_workflow
 
